@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.3'
+VERSION = '0.0.5a2'
 DESCRIPTION = 'Web-based point of sale system.'
 
 with open("README.md", "r") as fh:
@@ -15,7 +15,9 @@ setup(
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type="text/markdown",
+    license="MIT",
     packages=find_packages('src'),
+    include_package_data=True,
     package_dir={'': 'src'},
     install_requires=[
         "flask ~= 2.0"
