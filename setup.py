@@ -1,6 +1,8 @@
+import os
+
 from setuptools import setup, find_packages
 
-VERSION = '0.0.5a3'
+VERSION = '0.0.5a5'
 DESCRIPTION = 'Web-based point of sale system.'
 
 with open("README.md", "r") as fh:
@@ -16,7 +18,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
-    packages=find_packages('src'),
+    packages=find_packages('src', exclude=['test*']),
     include_package_data=True,
     package_dir={'': 'src'},
     install_requires=[
