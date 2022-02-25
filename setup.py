@@ -2,7 +2,7 @@ import os
 
 from setuptools import setup, find_packages
 
-VERSION = '0.0.5a5'
+VERSION = '0.0.5a6'
 DESCRIPTION = 'Web-based point of sale system.'
 
 with open("README.md", "r") as fh:

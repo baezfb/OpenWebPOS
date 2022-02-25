@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 
 from flask import Flask, render_template
 
@@ -8,26 +7,22 @@ def create_app(instance_dir=None):
     template_dir = 'ui/templates'
     static_dir = 'ui/static'
     base_path = os.path.abspath(os.path.dirname(__file__))
-    home_dir = Path.home()
 
     if instance_dir is None:
-        try:
-            os.mkdir(os.path.join(home_dir, '.openwebpos'))
-            os.mkdir(os.path.join(home_dir, '.openwebpos/instance'))
-        except FileExistsError:
-            pass
+        instance_dir = os.path.join(os.getcwd(), 'instance')
 
-        try:
-            with open(os.path.join(home_dir, ".openwebpos/instance/__init__.py"), "x") as f:
-                f.write('')
-            with open(os.path.join(home_dir, ".openwebpos/instance/settings.py"), "x") as sf:
-                sf.write('')
-        except FileNotFoundError:
-            print("The 'instance' directory does not exist")
-        except FileExistsError:
-            pass
+    try:
+        os.mkdir(os.path.join(os.getcwd(), 'instance'))
+    except FileExistsError:
+        pass
 
-        instance_dir = os.path.join(Path.home(), '.openwebpos/instance')
+    try:
+        with open(os.path.join(os.getcwd(), 'instance/__init__.py'), "x") as f1:
+            f1.write('')
+        with open(os.path.join(os.getcwd(), 'instance/settings.py'), "x") as f2:
+            f2.write("SECRET_KEY=''")
+    except FileExistsError:
+        pass
 
     app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, instance_relative_config=True,
                 instance_path=instance_dir)
