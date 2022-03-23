@@ -1,16 +1,17 @@
 import os
 from openwebpos.utils import gen_urlsafe_token
+from os import environ
 
 SECRET_KEY = gen_urlsafe_token(16)
 
 # database
 DB_DIALECT = 'sqlite'
 DB_DRIVER = 'mysqldb'
-DB_USER = 'mysql_user'
-DB_PASS = 'mysql_password'
-DB_HOST = '172.16.0.64'
-DB_PORT = '3306'
-DB_NAME = 'openwebpos_db'
+DB_USER = environ.get('DB_USER')
+DB_PASS = environ.get('DB_PASS')
+DB_HOST = environ.get('DB_HOST')
+DB_PORT = environ.get('DB_PORT')
+DB_NAME = environ.get('DB_NAME')
 
 if DB_DIALECT == 'sqlite':
     db_uri = 'sqlite:///' + os.path.join(os.getcwd(), 'openwebpos.db')
