@@ -1,8 +1,6 @@
-import os
-
 from setuptools import setup, find_packages
 
-VERSION = '0.0.5a6'
+VERSION = '0.0.5a8'
 DESCRIPTION = 'Web-based point of sale system.'
 
 with open("README.md", "r") as fh:
@@ -22,7 +20,13 @@ setup(
     include_package_data=True,
     package_dir={'': 'src'},
     install_requires=[
-        "flask ~= 2.0"
+        "flask ~= 2.0",
+        "Flask-SQLAlchemy ~= 2.5",
+        "Flask-WTF ~= 1.0",
+        "Flask-Login ~=0.5",
+        "Flask-Migrate ~= 3.1",
+        "mysqlclient ~= 2.1",
+        "python-dotenv ~= 0.19"
     ],
     keywords=['python', 'pos', 'point-of-sale'],
     classifiers=[
@@ -37,7 +41,7 @@ setup(
     ],
     extras_require={
         "dev": [
-
+            "markdown ~= 3.3"
         ]
     },
 )
