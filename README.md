@@ -12,9 +12,9 @@ $ pip install openwebpos
 ## Usage
 
 ```python
-from openwebpos import create_app
+from openwebpos import OpenWebPOS
 
-application = create_app()
+application = OpenWebPOS()
 
 if __name__ == "__main__":
     application.run()
