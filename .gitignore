@@ -1,5 +1,6 @@
 ### OpenWebPOS files
 app.py
+**/*.db
 
 ### Editor & IDE's
 .idea/
