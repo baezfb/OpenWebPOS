@@ -21,7 +21,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
-    packages=find_packages('src', exclude=['test*']),
+    packages=find_packages('src', exclude=['test*', 'wsgi.py']),
     include_package_data=True,
     package_dir={'': 'src'},
     install_requires=[
