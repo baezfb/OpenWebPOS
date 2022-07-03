@@ -12,6 +12,14 @@ class SQLMixin(object):
         db.session.commit()
         return self
 
+    def update(self):
+        """
+        Update model instance
+        :return: db.session.commit()'s result
+        """
+        db.session.commit()
+        return self
+
     def delete(self):
         """
         Delete model instance
