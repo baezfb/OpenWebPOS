@@ -2,12 +2,27 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
+    background-color: black;
+}
+
+nav {
+    border-radius: 1rem;
+    width: calc(100vw - 2rem);
+    margin: 0 auto;
+}
+
+nav ul > li.corner-btn {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 main {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
+    border-radius: 1rem;
+    margin-top: 1rem;
 }
 
 .fullscreen {

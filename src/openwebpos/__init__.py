@@ -8,7 +8,15 @@ from openwebpos.utils import create_folder, create_file
 
 
 class OpenWebPOS(Flask):
+    """
+    Application entry point.
+    """
+
     def __init__(self, instance_dir=None):
+        """
+        Initialize the application.
+        :param instance_dir:
+        """
         template_dir = 'ui/templates'
         static_dir = 'ui/static'
         base_path = os.path.abspath(os.path.dirname(__file__))
@@ -35,16 +43,19 @@ class OpenWebPOS(Flask):
             from openwebpos.extensions import db
             db.create_all()
 
-        @self.route('/')
-        def index():
-            return render_template('index.html', title='Index')
-
         for blueprint in blueprints:
             self.register_blueprint(blueprint)
 
     def run(self, host='localhost', port=5000, debug=False, **options):
+        """
+        Run the application.
+        :param host:
+        :param port:
+        :param debug:
+        :param options:
+        :return:
+        """
         self.run(host=host, port=port, debug=debug, **options)
-
 
 # def OpenWebPOS(instance_dir=None):
 #     template_dir = 'ui/templates'
