@@ -5,7 +5,7 @@ except ImportError:
 
 from setuptools import find_packages
 
-VERSION = '0.0.1'
+VERSION = '0.0.2a1'
 DESCRIPTION = 'Web-based point of sale system.'
 
 with open("README.md", "r") as fh:
@@ -24,6 +24,9 @@ setup(
     packages=find_packages('src', exclude=['test*', 'wsgi.py']),
     include_package_data=True,
     package_dir={'': 'src'},
+    python_requires='>=3.8',
+    homepage="https://github.com/baezfb/OpenWebPOS",
+    bugtrack_url="https://github.com/baezfb/OpenWebPOS/issues",
     install_requires=[
         "flask >= 2.0",
         "Flask-SQLAlchemy == 2.5",
