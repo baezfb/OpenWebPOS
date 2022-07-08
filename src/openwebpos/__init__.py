@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask
 
 from openwebpos.blueprints import blueprints
 from openwebpos.extensions import db
@@ -12,11 +12,15 @@ class OpenWebPOS(Flask):
     Application entry point.
     """
 
-    def __init__(self, instance_dir=None):
+    def __init__(self, host="127.0.0.1", port=8080, debug=False, instance_dir=None):
         """
         Initialize the application.
         :param instance_dir:
         """
+        self.host = host
+        self.port = port
+        self.debug = debug
+
         template_dir = 'ui/templates'
         static_dir = 'ui/static'
         base_path = os.path.abspath(os.path.dirname(__file__))
@@ -46,16 +50,16 @@ class OpenWebPOS(Flask):
         for blueprint in blueprints:
             self.register_blueprint(blueprint)
 
-    def run(self, host='localhost', port=5000, debug=False, **options):
-        """
-        Run the application.
-        :param host:
-        :param port:
-        :param debug:
-        :param options:
-        :return:
-        """
-        self.run(host=host, port=port, debug=debug, **options)
+    # def run(self, host='localhost', port=5000, debug=False, **options):
+    #     """
+    #     Run the application.
+    #     :param host:
+    #     :param port:
+    #     :param debug:
+    #     :param options:
+    #     :return:
+    #     """
+    #     self.run(host=host, port=port, debug=debug, **options)
 
 # def OpenWebPOS(instance_dir=None):
 #     template_dir = 'ui/templates'
