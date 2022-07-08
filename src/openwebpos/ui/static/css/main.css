@@ -7,22 +7,22 @@ body {
 }
 
 nav {
-    border-radius: 1rem;
-    width: calc(100vw - 2rem);
+    border-radius: 1em;
+    width: calc(100vw - 2em);
     margin: 0 auto;
 }
 
 nav ul > li.corner-btn {
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 main {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    border-radius: 1rem;
-    margin-top: 1rem;
+    border-radius: 1em;
+    margin-top: 1em;
 }
 
 .fullscreen {
@@ -30,7 +30,7 @@ main {
 }
 
 .card.rounded {
-    border-radius: 1.25rem;
+    border-radius: 1.25em;
 }
 
 .my0 {
@@ -45,8 +45,8 @@ main {
 /*****NumberPad*****/
 .number-pad input[type="text"],
 .number-pad input[type="password"] {
-    font-size: 6rem;
-    height: 6rem;
+    font-size: 6em;
+    height: 6em;
 }
 
 .number-pad .numbers {
@@ -58,6 +58,6 @@ main {
 .number-pad .numbers input {
     flex: 1 0 30%;
     min-height: calc(100vh / 11);
-    font-size: 2.5rem;
-    margin: .25rem;
+    font-size: 2.5em;
+    margin: .25em;
 }
