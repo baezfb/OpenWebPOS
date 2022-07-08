@@ -31,12 +31,19 @@ $ sudo apt install build-essential libssl-dev libffi-dev python-dev
 ```bash
 $ sudo apt install -y python3-venv
 ```
+
 create a project directory. change dirname to your projectname
+
 ```bash
 $ mkdir dirname
+```
+
+```bash
 $ cd  dirname
 ```
+
 create virtual environment
+
 ```bash
 $ python3 -m venv venv
 ```
