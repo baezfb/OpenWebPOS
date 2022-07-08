@@ -4,12 +4,57 @@ OpenWebPOS is a web-based point of sale system written in python using the Flask
 
 ## Installation
 
-Run the following to install:
+### Step 1 - Setting Up Python3
+
+#### Update System
+```bash
+$ sudo apt update
+$ sudo apt -y upgrade
+```
+
+#### Check Python Version (3.8)
+```bash
+$ python3 -V
+```
+
+#### Install pip
+```bash
+$ sudo apt install -y python3-pip
+```
+Development tools.
+```bash
+$ sudo apt install build-essential libssl-dev libffi-dev python-dev
+```
+
+### Sep 2 - Setting up Virtual environment using venv
+
+```bash
+$ sudo apt install -y python3-venv
+```
+create a project directory. change dirname to your projectname
+```bash
+$ mkdir dirname
+$ cd  dirname
+```
+create virtual environment
+```bash
+$ python3 -m venv venv
+```
+
+### Step 3 - Activate Virtual Environment
+
+```bash
+$ source /vnev/bin/activate
+```
+
+### Step 4 - Install
 ```bash
 $ pip install openwebpos
 ```
 
 ## Usage
+
+### Create a app.py file
 
 ```python
 from openwebpos import OpenWebPOS
