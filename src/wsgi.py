@@ -1,6 +1,6 @@
-from openwebpos import OpenWebPOS
+from openwebpos import open_web_pos
 
-application = OpenWebPOS()
+application = open_web_pos()
 
 if __name__ == '__main__':
     try:

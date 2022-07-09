@@ -5,7 +5,7 @@ except ImportError:
 
 from setuptools import find_packages
 
-VERSION = '0.0.2a2'
+VERSION = '0.0.2a3'
 DESCRIPTION = 'Web-based point of sale system.'
 
 with open("README.md", "r") as fh:
@@ -29,11 +29,9 @@ setup(
     bugtrack_url="https://github.com/baezfb/OpenWebPOS/issues",
     install_requires=[
         "flask >= 2.0",
-        "Flask-SQLAlchemy == 2.5",
-        "Flask-WTF == 1.0",
-        "Flask-Login == 0.5",
-        "Flask-Migrate == 3.1",
-        "mysqlclient == 2.1",
+        "Flask-SQLAlchemy >= 2.5",
+        "Flask-WTF >= 1.0",
+        "Flask-Login >= 0.5",
         "python-dotenv >= 0.20"
     ],
     keywords=['python', 'pos', 'point-of-sale'],
