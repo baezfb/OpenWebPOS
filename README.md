@@ -64,12 +64,12 @@ $ pip install openwebpos
 ### Create a app.py file
 
 ```python
-from openwebpos import OpenWebPOS
+from openwebpos import open_web_pos
 from dotenv import load_dotenv
 
-load_dotenv('.env') # take environment variables from .env file.
+load_dotenv('.env')  # take environment variables from .env file.
 
-application = OpenWebPOS()
+application = open_web_pos()
 
 if __name__ == "__main__":
     application.run()
