@@ -5,7 +5,7 @@ except ImportError:
 
 from setuptools import find_packages
 
-VERSION = '0.0.2a3'
+VERSION = '0.0.2a4'
 DESCRIPTION = 'Web-based point of sale system.'
 
 with open("README.md", "r") as fh:
