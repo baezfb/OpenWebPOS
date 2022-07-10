@@ -1,6 +1,9 @@
 ### OpenWebPOS files
 app.py
 **/*.db
+**/img/*.jpg
+**/img/*.png
+**/img/*.jpeg
 
 ### Editor & IDE's
 .idea/
