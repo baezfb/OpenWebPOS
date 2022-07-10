@@ -5,6 +5,10 @@ function getKeyValue(val) {
     display.value += val
 }
 
+function addNumber(element) {
+    document.getElementById('keypadVar').value = document.getElementById('keypadVar').value + element.value;
+}
+
 function currentDate() {
     const year = today.getFullYear();
     const month = today.toLocaleString('default', {month: "long"});
@@ -17,8 +21,7 @@ function currentTime() {
     function updateTime(time) {
         if (time < 10) {
             return "0" + time;
-        }
-        else {
+        } else {
             return time;
         }
     }

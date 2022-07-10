@@ -138,21 +138,69 @@ main {
 }
 
 /*****NumberPad*****/
-.number-pad input[type="text"],
-.number-pad input[type="password"] {
-    font-size: 6em;
-    height: 6em;
-}
 
-.number-pad .numbers {
+.login-container {
     display: flex;
-    flex-flow: row wrap;
+    height: calc(100vh - 2.2em);
+    max-height: calc(100vh - 2.2em);
+    margin: 0;
+    border-radius: 1em;
+    justify-content: center;
+    align-items: center;
 }
 
-.number-pad .numbers button,
-.number-pad .numbers input {
-    flex: 1 0 30%;
-    min-height: calc(100vh / 11);
-    font-size: 2.5em;
-    margin: .25em;
+.login-wrapper {
+    border: solid 3px #151515;
+    border-radius: 1em;
+    max-width: 50vw;
 }
+
+.login-wrapper form {
+    margin: 1em;
+}
+
+.pad-view {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.pad-view input {
+    font-size: 50px;
+    line-height: 50px;
+    height: 50px;
+    width: 250px;
+    text-align: center;
+}
+
+.number-pad {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.number-pad input {
+    flex: 1 0 33.3333%;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 40px;
+}
+
+
+/*.number-pad input[type="text"],*/
+/*.number-pad input[type="password"] {*/
+/*    font-size: 6em;*/
+/*    height: 6em;*/
+/*}*/
+
+/*.number-pad .numbers {*/
+/*    display: flex;*/
+/*    flex-flow: row wrap;*/
+/*}*/
+
+/*.number-pad .numbers button,*/
+/*.number-pad .numbers input {*/
+/*    flex: 1 0 30%;*/
+/*    min-height: calc(100vh / 11);*/
+/*    font-size: 2.5em;*/
+/*    margin: .25em;*/
+/*}*/
