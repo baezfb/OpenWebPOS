@@ -1,3 +1,4 @@
+[![Python application](https://github.com/baezfb/OpenWebPOS/actions/workflows/python-app.yml/badge.svg)](https://github.com/baezfb/OpenWebPOS/actions/workflows/python-app.yml)
 # OpenWebPOS
 
 OpenWebPOS is a web-based point of sale system written in python using the Flask framework.
@@ -75,11 +76,16 @@ if __name__ == "__main__":
     application.run()
 ```
 
+### Run the app
 
+```bash
+$ python3 app.py
+```
 
 # Developing
 
 To install openwebpos, along with the tools you need to develop and run tests, run the following in your virtualenv:
+
 ```bash
 $ pip install -e .[dev]
 ```
