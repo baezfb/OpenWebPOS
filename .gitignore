@@ -11,6 +11,7 @@ app.py
 history/
 
 src/openwebpos.egg-info/
+src/_version.py
 
 ### VirtualEnv template
 # Virtualenv
