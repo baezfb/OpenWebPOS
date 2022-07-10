@@ -1,4 +1,5 @@
-from src.openwebpos import open_web_pos
+# from src.openwebpos import open_web_pos
+from openwebpos import open_web_pos
 
 
 def test_home_page():
