@@ -1,3 +1,8 @@
+* {
+    scrollbar-width: thin;
+    scrollbar-color: blue red;
+}
+
 html,
 body {
     min-height: 100vh;
@@ -39,6 +44,7 @@ main {
 
 .menu-section {
     grid-area: main;
+    overflow: hidden;
 }
 
 .grid-container {
@@ -89,6 +95,23 @@ main {
     font-weight: bolder;
 }
 
+.menu-section .card .card-image .card-title {
+    font-size: 1.25em;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 0.25em 0.25em 0;
+    background-color: rgba(0, 0, 0, 0.60);
+    width: 100%;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.menu-view {
+    height: 100%;
+    overflow: scroll;
+}
+
 .fullscreen {
     flex: 1 0 auto;
 }
@@ -97,8 +120,8 @@ main {
     border-radius: 1em;
 }
 
-.card.rounded {
-    border-radius: 1.25em;
+.card.rounded img {
+    border-radius: 1em;
 }
 
 .ml0 {
