@@ -31,7 +31,10 @@ def open_web_pos(instance_dir=None):
     @app.before_first_request
     def before_first_request():
         from openwebpos.extensions import db
+        from openwebpos.blueprints.user.models import User
         db.create_all()
+        if not User.query.first():
+            User.insert_user()
 
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
