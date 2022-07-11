@@ -5,11 +5,12 @@
 
     <div class="login-container">
         <div class="login-wrapper">
-            <form action="" method="POST">
+            <form action="" method="POST" autocomplete="off">
                 {#                {{ form.hidden_tag() }}#}
                 <div class="pad-view">
                     {#                    {{ form.password() }}#}
-                    <input id="keypadVar" type="password">
+                    <label for="keypadVar"></label>
+                    <input id="keypadVar" type="password" autocomplete="new-password" disabled>
                 </div>
                 <div class="number-pad">
                     <input type="button" value="7" onClick="addNumber(this);">

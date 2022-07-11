@@ -173,6 +173,15 @@ main {
     text-align: center;
 }
 
+.pad-view input#keypadVar {
+    font-size: 5em;
+    line-height: 5em;
+    color: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(0, 0, 0, 0.7);
+    border-radius: 1em;
+    background-color: white;
+}
+
 .number-pad {
     display: flex;
     flex-wrap: wrap;
