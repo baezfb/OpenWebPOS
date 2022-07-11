@@ -1,4 +1,5 @@
 [![Python application](https://github.com/baezfb/OpenWebPOS/actions/workflows/python-app.yml/badge.svg)](https://github.com/baezfb/OpenWebPOS/actions/workflows/python-app.yml)
+[![Dependency Review](https://github.com/baezfb/OpenWebPOS/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/baezfb/OpenWebPOS/actions/workflows/dependency-review.yml)
 # OpenWebPOS
 
 OpenWebPOS is a web-based point of sale system written in python using the Flask framework.
