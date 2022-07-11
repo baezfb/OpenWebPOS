@@ -26,7 +26,7 @@ def open_web_pos(instance_dir=None):
     app.config.from_pyfile(os.path.join(base_path, 'config/settings.py'))
     app.config.from_pyfile(os.path.join('settings.py'), silent=True)
 
-    db.init_app(app)
+    extensions(app)
 
     @app.before_first_request
     def before_first_request():
@@ -35,5 +35,20 @@ def open_web_pos(instance_dir=None):
 
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
+
+    return app
+
+
+def extensions(app):
+    from openwebpos.extensions import db, login_manager
+    db.init_app(app)
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        from openwebpos.blueprints.user.models import User
+        return User.query.get(user_id)
+
+    login_manager.login_view = 'user.login'
 
     return app

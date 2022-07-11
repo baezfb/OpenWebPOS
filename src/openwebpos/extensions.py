@@ -1,7 +1,8 @@
-from flask_sqlalchemy import Model, SQLAlchemy
 import sqlalchemy as sa
-from sqlalchemy.ext.declarative import declared_attr, has_inherited_table
+from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_sqlalchemy import Model, SQLAlchemy
+from sqlalchemy.ext.declarative import declared_attr
 
 
 class CustomModel(Model):
@@ -18,3 +19,4 @@ class CustomModel(Model):
 
 db = SQLAlchemy(model_class=CustomModel)
 migrate = Migrate()
+login_manager = LoginManager()
