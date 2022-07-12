@@ -8,7 +8,7 @@ bp = Blueprint('pos', __name__, template_folder='templates')
 
 @bp.before_request
 @login_required
-@role_required('admin, staff')
+@role_required('Admin')
 def before_request():
     """
     Protects all the pos endpoints.

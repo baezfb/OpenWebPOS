@@ -15,7 +15,7 @@ def role_required(*roles):
     def decorator(f):
         @wraps(f)
         def decorated_function(*args, **kwargs):
-            if current_user.role not in roles:
+            if current_user.role.name not in roles:
                 flash("You do not have permission.", "error")
                 return redirect(url_for('pos.index'))
             return f(*args, **kwargs)
