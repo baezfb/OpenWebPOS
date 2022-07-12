@@ -36,6 +36,8 @@ def login_post():
                 next_page = url_for('pos.index')
             flash('You are now logged in')
             return redirect(next_page)
+        return redirect(url_for('pos.index'))
+    return redirect(url_for('user.login'))
 
 
 @bp.get('/logout')
