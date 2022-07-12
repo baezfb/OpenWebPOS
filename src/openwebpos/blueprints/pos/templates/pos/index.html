@@ -237,3 +237,12 @@
     </div>
 
 {% endblock %}
+
+{% block page_scripts %}
+    <!-- save route to local storage as pre_page -->
+    <script>
+        window.onload = function () {
+            localStorage.setItem("prev_page", location.href)
+        }
+    </script>
+{% endblock %}

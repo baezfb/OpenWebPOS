@@ -1,5 +1,9 @@
 const today = new Date();
 
+function go_back() {
+    window.location.href = localStorage.getItem("prev_page")
+}
+
 function getKeyValue(val) {
     let display = document.getElementById('display');
     display.value += val

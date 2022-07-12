@@ -12,8 +12,11 @@
 <nav class="nav-wrapper blue accent-4">
     <a href="{{ url_for('pos.index') }}" class="brand-logo center">OpenWebPOS</a>
     <ul class="left left-align">
-        <li class="waves-effect waves-light"><a href="#"><i class="material-icons">arrow_back</i></a></li>
-        <li class="waves-effect waves-light hide-on-med-and-down"><a href="#"><i class="material-icons">apps</i></a>
+        <li class="waves-effect waves-light">
+            <a onclick="go_back()"><i class="material-icons">arrow_back</i></a>
+        </li>
+        <li class="waves-effect waves-light hide-on-med-and-down">
+            <a href="#"><i class="material-icons">apps</i></a>
         </li>
     </ul>
     <ul class="right">
