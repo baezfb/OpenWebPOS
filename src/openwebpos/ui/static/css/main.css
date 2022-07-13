@@ -36,6 +36,22 @@ main {
     margin: 1em 1em 0;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+}
+
+.modal {
+    max-height: 90% !important;
+}
+
 .card .card-image img {
     height: 108px;
 }
@@ -191,9 +207,14 @@ main {
     flex-wrap: wrap;
 }
 
-.number-pad input {
+.number-pad input,
+.number-pad a.input {
     flex: 1 0 33.3333%;
     box-sizing: border-box;
     padding: 10px;
     font-size: 40px;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.7);
+    border-radius: 1em;
+    margin-top: 0.5em;
 }

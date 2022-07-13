@@ -1,0 +1,110 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block main %}
+
+    <div class="grid-container">
+
+        {% include 'pos/_order_section.html' %}
+
+        <div class="menu-section">
+            <div class="menu-view">
+                <div class="row my0">
+                    {% for item in items %}
+                        <div class="col s6 m3">
+                            <a href="#modal-{{ item.public_id }}" class="modal-trigger">
+                                <div class="card rounded">
+                                    <div class="card-image">
+                                        <img src="{{ url_for('static', filename='img/') }}{{ item.image }}"
+                                             alt="{{ item.name }}-image">
+                                        <span class="card-title">{{ item.name }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Modal -->
+                            <div id="modal-{{ item.public_id }}" class="modal rounded">
+                                <div class="modal-content">
+                                    <h4 class="center-align">{{ item.category.name }} - {{ item.name }}</h4>
+                                    <div>
+                                        <div>
+                                            <form action="{{ url_for('user.login_post') }}" method="POST"
+                                                  autocomplete="off">
+                                                <div class="pad-view">
+                                                    <label>
+                                                        <input id="keypadVar" type="number" autocomplete="new-password">
+                                                    </label>
+                                                </div>
+                                                <div class="number-pad">
+                                                    <input type="button" value="7" onClick="addNumber(this);">
+                                                    <input type="button" value="8" onClick="addNumber(this);">
+                                                    <input type="button" value="9" onClick="addNumber(this);">
+                                                    <input type="button" value="4" onClick="addNumber(this);">
+                                                    <input type="button" value="5" onClick="addNumber(this);">
+                                                    <input type="button" value="6" onClick="addNumber(this);">
+                                                    <input type="button" value="1" onClick="addNumber(this);">
+                                                    <input type="button" value="2" onClick="addNumber(this);">
+                                                    <input type="button" value="3" onClick="addNumber(this);">
+                                                    <a href="#modal-addon-{{ item.public_id }}"
+                                                       class="input modal-trigger">+ON</a>
+                                                    <input type="button" value="0" onClick="addNumber(this);">
+                                                    <a href="#modal-options-{{ item.public_id }}"
+                                                       class="input modal-trigger">OPT</a>
+                                                    <input type="reset" value="Clear">
+                                                    <input type="submit" value="ADD">
+                                                </div>
+                                                <!-- OptionsModal -->
+                                                <div id="modal-options-{{ item.public_id }}" class="modal rounded">
+                                                    <div class="modal-content">
+                                                        <h4>{{ item.name }} - Options</h4>
+                                                        <form action="">
+                                                            <div class="row mb0">
+                                                                {% for option in item.options %}
+                                                                    <div class="col s12 m6">
+                                                                        <p>
+                                                                            <label>
+                                                                                <input type="checkbox"
+                                                                                       checked="checked"/>
+                                                                                <span>{{ option.name }}</span>
+                                                                            </label>
+                                                                        </p>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <!-- AddOnsModal -->
+                                                <div id="modal-addon-{{ item.public_id }}" class="modal rounded">
+                                                    <div class="modal-content">
+                                                        <h4>Add-ons modal</h4>
+                                                        <form action="">
+                                                            <div class="row mb0">
+                                                                {% for addon in item.addons %}
+                                                                    <div class="col s12 m6">
+                                                                        <p>
+                                                                            <label>
+                                                                                <input type="checkbox"/>
+                                                                                <span>Addon-1</span>
+                                                                            </label>
+                                                                        </p>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
