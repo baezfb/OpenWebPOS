@@ -36,6 +36,10 @@ main {
     margin: 1em 1em 0;
 }
 
+.card .card-image img {
+    height: 108px;
+}
+
 .order-section {
     grid-area: sidebar;
     overflow: hidden;
@@ -193,23 +197,3 @@ main {
     padding: 10px;
     font-size: 40px;
 }
-
-
-/*.number-pad input[type="text"],*/
-/*.number-pad input[type="password"] {*/
-/*    font-size: 6em;*/
-/*    height: 6em;*/
-/*}*/
-
-/*.number-pad .numbers {*/
-/*    display: flex;*/
-/*    flex-flow: row wrap;*/
-/*}*/
-
-/*.number-pad .numbers button,*/
-/*.number-pad .numbers input {*/
-/*    flex: 1 0 30%;*/
-/*    min-height: calc(100vh / 11);*/
-/*    font-size: 2.5em;*/
-/*    margin: .25em;*/
-/*}*/
