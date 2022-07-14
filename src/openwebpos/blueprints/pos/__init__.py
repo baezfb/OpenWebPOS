@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from flask_login import login_required
 
-from openwebpos.blueprints.user.decorators import role_required
+from openwebpos.blueprints.user.decorators import staff_required
 from .models import Category, Item, Option, Addon
 
 bp = Blueprint('pos', __name__, template_folder='templates')
@@ -9,7 +9,7 @@ bp = Blueprint('pos', __name__, template_folder='templates')
 
 @bp.before_request
 @login_required
-@role_required('Admin')
+@staff_required
 def before_request():
     """
     Protects all the pos endpoints.

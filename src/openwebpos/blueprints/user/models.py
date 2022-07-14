@@ -122,6 +122,11 @@ class User(UserMixin, SQLMixin, db.Model):
         user.role_id = Role.query.filter_by(name='Admin').first().id
         user.save()
 
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        if self.public_id is None:
+            self.public_id = gen_urlsafe_token(25)
+
     def check_password(self, password):
         return check_password_hash(password, self.password)
 
@@ -151,7 +156,8 @@ class User(UserMixin, SQLMixin, db.Model):
 
         return self.save()
 
-    def __init__(self, **kwargs):
-        super(User, self).__init__(**kwargs)
-        if self.public_id is None:
-            self.public_id = gen_urlsafe_token(25)
+    def can(self, perm):
+        """
+        Check if the user has a specific permission.
+        """
+        return self.role is not None and self.role.has_permission(perm)
