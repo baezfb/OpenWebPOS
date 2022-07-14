@@ -4,6 +4,7 @@ app.py
 **/img/*.jpg
 **/img/*.png
 **/img/*.jpeg
+!**/img/placeholder.png
 
 ### Editor & IDE's
 .idea/
