@@ -35,7 +35,8 @@ def index():
     return render_template('pos/index.html', categories=categories)
 
 
-@bp.get('/<category_public_id>')
-def category(category_public_id):
-    items = Item.query.filter_by(category_id=category_public_id).all()
+@bp.get('/<category_items>')
+def category(category_items):
+    category_id = Category.query.filter_by(slug=category_items, active=True).first_or_404().id
+    items = Item.query.filter_by(category_id=category_id, active=True).all()
     return render_template('pos/category.html', items=items)

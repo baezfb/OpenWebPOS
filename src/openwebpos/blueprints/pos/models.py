@@ -1,14 +1,15 @@
+from slugify import slugify
+
 from openwebpos.extensions import db
-from openwebpos.utils import gen_urlsafe_token
 from openwebpos.utils.sql import SQLMixin
 
 
 class Category(SQLMixin, db.Model):
     __tablename__ = 'categories'
 
-    public_id = db.Column(db.String(20), nullable=False, unique=True)
-    name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(50), nullable=False, unique=True)
+    slug = db.Column(db.String(50), nullable=False, unique=True)
+    description = db.Column(db.String(255))
     image = db.Column(db.String(255), nullable=False)
     active = db.Column(db.Boolean, default=True)
 
@@ -22,7 +23,8 @@ class Category(SQLMixin, db.Model):
         """
         category = Category()
         category.name = 'Food'
-        category.description = 'Burger'
+        category.slug = slugify(text='Food')
+        category.description = 'Category description'
         category.save()
 
     def is_active(self):
@@ -31,24 +33,21 @@ class Category(SQLMixin, db.Model):
     def __init__(self, **kwargs):
         super(Category, self).__init__(**kwargs)
         if self.image is None:
-            self.image = 'placeholder_4096x2160.png'
-
-        if self.public_id is None:
-            self.public_id = gen_urlsafe_token(10)
+            self.image = 'placeholder.png'
 
 
 class Item(SQLMixin, db.Model):
     __tablename__ = 'items'
 
-    public_id = db.Column(db.String(20), nullable=False, unique=True)
-    name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(50), nullable=False, unique=True)
+    slug = db.Column(db.String(50), nullable=False, unique=True)
+    description = db.Column(db.String(255))
     image = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Float, nullable=False)
     active = db.Column(db.Boolean, default=True)
 
     # relationship
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.public_id'), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
     options = db.relationship('Option', backref='item', lazy='dynamic')
     addons = db.relationship('Addon', backref='item', lazy='dynamic')
 
@@ -59,9 +58,12 @@ class Item(SQLMixin, db.Model):
         """
         item = Item()
         item.name = 'Burger'
-        item.description = 'Burger'
+        item.slug = slugify(text='Burger')
+        item.description = 'Item description'
         item.price = 10.50
-        item.category_id = Category.query.filter_by(name='Food').first().public_id
+        item.category_id = Category.query.filter_by(name='Food').first().id
+        item.addons = Addon.query.filter_by(item_id=item.id, active=True).all()
+        item.options = Option.query.filter_by(item_id=item.id, active=True).all()
         item.save()
 
     def is_active(self):
@@ -69,25 +71,25 @@ class Item(SQLMixin, db.Model):
 
     def __init__(self, **kwargs):
         super(Item, self).__init__(**kwargs)
-        if self.image is None:
-            self.image = 'placeholder_4096x2160.png'
 
-        if self.public_id is None:
-            self.public_id = gen_urlsafe_token(10)
+        if self.image is None:
+            self.image = 'placeholder.png'
+
+        if self.price is None:
+            self.price = 0.00
 
 
 class Option(SQLMixin, db.Model):
     __tablename__ = 'options'
 
-    public_id = db.Column(db.String(20), nullable=False, unique=True)
     name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255))
     image = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Float, nullable=False)
     active = db.Column(db.Boolean, default=True)
 
     # relationship
-    item_id = db.Column(db.Integer, db.ForeignKey('items.public_id'), nullable=False)
+    item_id = db.Column(db.Integer, db.ForeignKey('items.id'), nullable=False)
 
     @staticmethod
     def insert_options():
@@ -98,7 +100,7 @@ class Option(SQLMixin, db.Model):
         option.name = 'Option1'
         option.description = 'Option1 Description'
         option.price = 10.00
-        option.item_id = Item.query.filter_by(name='Burger').first().public_id
+        option.item_id = Item.query.filter_by(name='Burger').first().id
         option.save()
 
     def is_active(self):
@@ -107,10 +109,7 @@ class Option(SQLMixin, db.Model):
     def __init__(self, **kwargs):
         super(Option, self).__init__(**kwargs)
         if self.image is None:
-            self.image = 'placeholder_4096x2160.png'
-
-        if self.public_id is None:
-            self.public_id = gen_urlsafe_token(10)
+            self.image = 'placeholder.png'
 
         if self.price is None:
             self.price = 0.00
@@ -119,15 +118,14 @@ class Option(SQLMixin, db.Model):
 class Addon(SQLMixin, db.Model):
     __tablename__ = 'addons'
 
-    public_id = db.Column(db.String(20), nullable=False, unique=True)
     name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255))
     image = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Float, nullable=False)
     active = db.Column(db.Boolean, default=True)
 
     # relationship
-    item_id = db.Column(db.Integer, db.ForeignKey('items.public_id'), nullable=False)
+    item_id = db.Column(db.Integer, db.ForeignKey('items.id'), nullable=False)
 
     @staticmethod
     def insert_addons():
@@ -138,7 +136,7 @@ class Addon(SQLMixin, db.Model):
         addon.name = 'Addon1'
         addon.description = 'Addon1 Description'
         addon.price = 10.00
-        addon.item_id = Item.query.filter_by(name='Burger').first().public_id
+        addon.item_id = Item.query.filter_by(name='Burger').first().id
         addon.save()
 
     def is_active(self):
@@ -147,10 +145,7 @@ class Addon(SQLMixin, db.Model):
     def __init__(self, **kwargs):
         super(Addon, self).__init__(**kwargs)
         if self.image is None:
-            self.image = 'placeholder_4096x2160.png'
-
-        if self.public_id is None:
-            self.public_id = gen_urlsafe_token(10)
+            self.image = 'placeholder.png'
 
         if self.price is None:
             self.price = 0.00

@@ -12,7 +12,7 @@
                 <div class="row my0">
                     {% for item in items %}
                         <div class="col s6 m3">
-                            <a href="#modal-{{ item.public_id }}" class="modal-trigger">
+                            <a href="#modal-{{ item.category.name }}" class="modal-trigger">
                                 <div class="card rounded">
                                     <div class="card-image">
                                         <img src="{{ url_for('static', filename='img/') }}{{ item.image }}"
@@ -22,12 +22,12 @@
                                 </div>
                             </a>
                             <!-- Modal -->
-                            <div id="modal-{{ item.public_id }}" class="modal rounded">
+                            <div id="modal-{{ item.category.name }}" class="modal rounded">
                                 <div class="modal-content">
                                     <h4 class="center-align">{{ item.category.name }} - {{ item.name }}</h4>
                                     <div>
                                         <div>
-                                            <form action="{{ url_for('user.login_post') }}" method="POST"
+                                            <form action="" method="POST"
                                                   autocomplete="off">
                                                 <div class="pad-view">
                                                     <label>
@@ -44,16 +44,15 @@
                                                     <input type="button" value="1" onClick="addNumber(this);">
                                                     <input type="button" value="2" onClick="addNumber(this);">
                                                     <input type="button" value="3" onClick="addNumber(this);">
-                                                    <a href="#modal-addon-{{ item.public_id }}"
-                                                       class="input modal-trigger">+ON</a>
+                                                    <a href="#modal-addon-{{ item.name }}" class="input modal-trigger">+ON</a>
                                                     <input type="button" value="0" onClick="addNumber(this);">
-                                                    <a href="#modal-options-{{ item.public_id }}"
+                                                    <a href="#modal-options-{{ item.name }}"
                                                        class="input modal-trigger">OPT</a>
                                                     <input type="reset" value="Clear">
                                                     <input type="submit" value="ADD">
                                                 </div>
                                                 <!-- OptionsModal -->
-                                                <div id="modal-options-{{ item.public_id }}" class="modal rounded">
+                                                <div id="modal-options-{{ item.name }}" class="modal rounded">
                                                     <div class="modal-content">
                                                         <h4>{{ item.name }} - Options</h4>
                                                         <form action="">
@@ -74,7 +73,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- AddOnsModal -->
-                                                <div id="modal-addon-{{ item.public_id }}" class="modal rounded">
+                                                <div id="modal-addon-{{ item.name }}" class="modal rounded">
                                                     <div class="modal-content">
                                                         <h4>Add-ons modal</h4>
                                                         <form action="">
