@@ -16,6 +16,7 @@ def open_web_pos(instance_dir=None):
         instance_dir = os.path.join(os.getcwd(), 'instance')
 
     create_folder(folder_path=os.getcwd(), folder_name='instance')
+    create_folder(folder_path=os.getcwd(), folder_name='uploads')
     create_file(file_path=os.getcwd(), file_name='instance/__init__.py')
     create_file(file_path=os.getcwd(), file_name='instance/settings.py', file_mode="w",
                 file_content="DB_DIALECT='sqlite'")
