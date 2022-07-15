@@ -30,6 +30,9 @@ class Category(SQLMixin, db.Model):
     def is_active(self):
         return self.active
 
+    def is_used(self):
+        return self.items.count() > 0
+
     def __init__(self, **kwargs):
         super(Category, self).__init__(**kwargs)
         if self.slug is None:
@@ -68,6 +71,9 @@ class Item(SQLMixin, db.Model):
 
     def is_active(self):
         return self.active
+
+    def is_used(self):
+        return self.options.count() > 0 or self.addons.count() > 0
 
     def __init__(self, **kwargs):
         super(Item, self).__init__(**kwargs)

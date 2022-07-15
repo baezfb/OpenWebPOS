@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block main %}
+
+    <div class="row mb0">
+        <div class="col s6 m3 waves-effect waves-light">
+            <a href="{{ url_for('admin.categories') }}">
+                <div class="card-panel blue-grey rounded center-align">
+                    <span class="white-text flow-text">Categories</span>
+                </div>
+            </a>
+        </div>
+        <div class="col s6 m3 waves-effect waves-light">
+            <a href="">
+                <div class="card-panel blue-grey rounded center-align">
+                    <span class="white-text flow-text">Items</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block page_scripts %}
+    <!-- save route to local storage as pre_page -->
+    <script>
+        window.onload = function () {
+            localStorage.setItem("prev_page", location.href)
+        }
+    </script>
+{% endblock %}

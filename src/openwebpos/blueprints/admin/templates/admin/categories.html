@@ -1,0 +1,95 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block main %}
+
+    <div class="container">
+        <table class="striped highlight centered">
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for category in categories_list %}
+                <tr>
+                    <td>
+                        {% if category.image %}
+                            <img src="{{ url_for('uploaded_file', filename=category.image) }}"
+                                 alt="{{ category.name }}" width="100">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='img/placeholder.png') }}" alt="{{ category.name }}"
+                                 width="100">
+                        {% endif %}
+                    </td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td>
+                        <a href="" class="btn rounded blue accent-4 waves-effect waves-light">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="{{ url_for('admin.delete_category', category_id=category.id) }}"
+                           class="btn rounded red waves-effect waves-red">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="fixed-action-btn">
+        <a href="#modalAddCategory" class="btn-floating btn-large blue accent-4 pulse modal-trigger">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+
+    <div id="modalAddCategory" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Add New Category</h4>
+            <form action="{{ url_for('admin.add_category') }}" method="post" enctype="multipart/form-data">
+                {{ category_form.hidden_tag() }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ category_form.name.label }}
+                        {{ category_form.name(class="validate") }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ category_form.description.label }}
+                        {{ category_form.description() }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-field input-field col s12">
+                        <div class="btn rounded blue accent-4">
+                            <span>File</span>
+                            {{ category_form.image() }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <label>
+                                <input class="file-path validate" type="text">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb0">
+                    <div class="input-field col s12 center-align">
+                        {{ category_form.submit(class="btn min-w50 rounded waves-effect waves-light") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

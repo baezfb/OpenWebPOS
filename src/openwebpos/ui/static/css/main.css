@@ -48,6 +48,10 @@ input[type=number] {
     margin: 0;
 }
 
+.min-w50 {
+    min-width: 50%;
+}
+
 .modal {
     max-height: 90% !important;
 }
