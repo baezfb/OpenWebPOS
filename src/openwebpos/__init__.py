@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, send_from_directory
 
 from openwebpos.blueprints import blueprints
 from openwebpos.extensions import db
@@ -38,6 +38,10 @@ def open_web_pos(instance_dir=None):
 
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
+
+    @app.route('/uploads/<filename>')
+    def uploaded_file(filename):
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
     return app
 

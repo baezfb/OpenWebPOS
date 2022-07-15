@@ -10,7 +10,7 @@ class Category(SQLMixin, db.Model):
     name = db.Column(db.String(50), nullable=False, unique=True)
     slug = db.Column(db.String(50), nullable=False, unique=True)
     description = db.Column(db.String(255))
-    image = db.Column(db.String(255), nullable=False)
+    image = db.Column(db.String(255))
     active = db.Column(db.Boolean, default=True)
 
     # relationship
@@ -32,8 +32,8 @@ class Category(SQLMixin, db.Model):
 
     def __init__(self, **kwargs):
         super(Category, self).__init__(**kwargs)
-        if self.image is None:
-            self.image = 'placeholder.png'
+        if self.slug is None:
+            self.slug = slugify(text=self.name)
 
 
 class Item(SQLMixin, db.Model):

@@ -16,8 +16,13 @@
                                 <a href="{{ url_for('pos.category', category_items=category.slug) }}">
                                     <div class="card rounded">
                                         <div class="card-image">
-                                            <img src="{{ url_for('static', filename='img/') }}{{ category.image }}"
-                                                 alt="{{ category.name }}-image">
+                                            {% if category.image %}
+                                                <img src="{{ url_for('uploaded_file', filename=category.image) }}"
+                                                     alt="{{ category.name }}-image">
+                                            {% else %}
+                                                <img src="{{ url_for('static', filename='img/placeholder.png') }}"
+                                                     alt="{{ category.name }}-image">
+                                            {% endif %}
                                             <span class="card-title">{{ category.name }}</span>
                                         </div>
                                     </div>
