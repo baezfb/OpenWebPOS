@@ -1,0 +1,128 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block main %}
+
+    <div>
+        <table class="highlight centered">
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Options</th>
+                <th>Addons</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for items in items_list %}
+                <tr>
+                    <td>
+                        {% if items.image %}
+                            <img src="{{ url_for('uploaded_file', filename=items.image) }}" alt="{{ items.name }} image"
+                                 width="100">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='img/placeholder.png') }}" alt="{{ items.name }}"
+                                 width="100">
+                        {% endif %}
+                    </td>
+                    <td>{{ items.category.name }}</td>
+                    <td>{{ items.name }}</td>
+                    <td>
+                        {% if items.description %}
+                            {{ items.description }}
+                        {% else %}
+                            <em>No description</em>
+                        {% endif %}
+                    </td>
+                    <td>&dollar;&nbsp;{{ items.price }}</td>
+                    <td>
+                        {% for options in options_list %}
+                            {% if options.item_id == items.id %}
+                                {{ options.name }}
+                            {% else %}
+                                <em>No options</em>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for addons in addons_list %}
+                            {% if addons.item_id == items.id %}
+                                {{ addons.name }}
+                            {% else %}
+                                <em>No addons</em>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href=""
+                           class="btn-floating btn-small waves-effect waves-light orange"><i
+                                class="material-icons">edit</i></a>
+                        <a href="{{ url_for('admin.delete_item', item_id=items.id) }}"
+                           class="btn-floating btn-small waves-effect waves-light red"><i
+                                class="material-icons">delete</i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a href="#modalAddItem" class="btn-floating btn-large blue accent-4 pulse modal-trigger">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+
+    <div id="modalAddItem" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Add New Item</h4>
+            <form action="{{ url_for('admin.add_item') }}" method="post" enctype="multipart/form-data">
+                {{ item_form.hidden_tag() }}
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        {{ item_form.categories() }}
+                        {{ item_form.categories.label }}
+                    </div>
+                    <div class="input-field col s12 m6">
+                        {{ item_form.name() }}
+                        {{ item_form.name.label }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ item_form.description() }}
+                        {{ item_form.description.label }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-field input-field col s12 m9">
+                        <div class="btn">
+                            <span>File</span>
+                            {{ item_form.image() }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <label>
+                                <input class="file-path validate" type="text" placeholder="Upload image">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        {{ item_form.price() }}
+                        {{ item_form.price.label }}
+                    </div>
+                </div>
+                <div class="row mb0">
+                    <div class="col s12 center-align">
+                        {{ item_form.submit(class="btn min-w50 waves-effect waves-light") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -4,10 +4,10 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from flask_login import login_required
 from slugify import slugify
 
-from openwebpos.blueprints.pos.models import Category
+from openwebpos.blueprints.pos.models import Category, Item, Option, Addon
 from openwebpos.blueprints.user.decorators import admin_required
 from openwebpos.utils import allowed_file, get_file_extension, delete_file
-from .forms import CategoryForm
+from .forms import CategoryForm, ItemForm
 
 bp = Blueprint('admin', __name__, template_folder='templates', url_prefix='/admin')
 
