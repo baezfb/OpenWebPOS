@@ -14,19 +14,7 @@ def before_request():
     """
     Protects all the pos endpoints.
     """
-
-    # insert categories to the database if none are present
-    if not Category.query.first():
-        Category.insert_categories()
-
-    if not Item.query.first():
-        Item.insert_items()
-
-    if not Option.query.first():
-        Option.insert_options()
-
-    if not Addon.query.first():
-        Addon.insert_addons()
+    pass
 
 
 @bp.get('/')
