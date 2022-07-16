@@ -15,8 +15,13 @@
                             <a href="#modal-{{ item.category.name }}" class="modal-trigger">
                                 <div class="card rounded">
                                     <div class="card-image">
-                                        <img src="{{ url_for('static', filename='img/') }}{{ item.image }}"
-                                             alt="{{ item.name }}-image">
+                                        {% if item.image %}
+                                            <img src="{{ url_for('uploaded_file', filename=item.image) }}"
+                                                 alt="{{ item.name }}-image">
+                                        {% else %}
+                                            <img src="{{ url_for('static', filename='img/placeholder.png') }}"
+                                                 alt="{{ item.name }}-image">
+                                        {% endif %}
                                         <span class="card-title">{{ item.name }}</span>
                                     </div>
                                 </div>
