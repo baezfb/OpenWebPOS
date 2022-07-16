@@ -54,8 +54,7 @@ class Role(SQLMixin, db.Model):
             for perm in roles[r]:
                 role.add_permission(perm)
             role.default = (role.name == default_role)
-            db.session.add(role)
-        db.session.commit()
+            role.save()
 
     def add_permission(self, perm):
         """
@@ -114,18 +113,20 @@ class User(UserMixin, SQLMixin, db.Model):
         Insert default user in the database.
         """
         Role.insert_roles()
-        user = User()
-        user.username = 'admin'
-        user.email = 'admin@mail.com'
-        user.password = generate_password_hash('admin')
-        user.pin = '123456'
-        user.role_id = Role.query.filter_by(name='Admin').first().id
+        user = User(username='admin',
+                    email='admin@mail.com',
+                    password=generate_password_hash('admin'),
+                    pin='1234',
+                    role_id=Role.query.filter_by(name='Admin').first().id)
         user.save()
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
         if self.public_id is None:
             self.public_id = gen_urlsafe_token(25)
+
+        if self.role_id is None:
+            self.role_id = Role.query.filter_by(name='User').first().id  # default role
 
     def check_password(self, password):
         return check_password_hash(password, self.password)
