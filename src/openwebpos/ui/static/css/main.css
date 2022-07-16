@@ -48,6 +48,15 @@ input[type=number] {
     margin: 0;
 }
 
+td, th {
+    padding: 0.25em;
+}
+
+td > image {
+    height: 100%;
+    max-height: 52px;
+}
+
 .min-w50 {
     min-width: 50%;
 }
