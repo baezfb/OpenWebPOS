@@ -1,7 +1,7 @@
 const today = new Date();
 
 function go_back() {
-    window.location.href = localStorage.getItem("prev_page")
+    window.history.back();
 }
 
 function getKeyValue(val) {

@@ -144,6 +144,13 @@ class User(UserMixin, SQLMixin, db.Model):
         """
         return self.active
 
+    def is_admin(self):
+        """
+        Return whether user is admin.
+        :return: bool
+        """
+        return self.role_id == Role.query.filter_by(name='Admin').first().id
+
     def update_activity_tracking(self, ip_address: str):
         """
         Update the fields associated with user activity tracking.

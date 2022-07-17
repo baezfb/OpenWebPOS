@@ -1,6 +1,6 @@
 <div class="row mb0 white-text">
     <div class="col s4 left-align">
-        <pre class="my0">User:Admin</pre>
+        <pre class="my0">User:&nbsp;{{ current_user.username }}</pre>
     </div>
     <div class="col s4 center-align">
         <pre class="my0" id="date"></pre>
@@ -15,9 +15,11 @@
         <li class="waves-effect waves-light">
             <a onclick="go_back()"><i class="material-icons">arrow_back</i></a>
         </li>
-        <li class="waves-effect waves-light hide-on-med-and-down">
-            <a href="#"><i class="material-icons">apps</i></a>
-        </li>
+        {% if current_user.is_admin %}
+            <li class="waves-effect waves-light hide-on-med-and-down">
+                <a href="{{ url_for('admin.index') }}"><i class="material-icons">apps</i></a>
+            </li>
+        {% endif %}
     </ul>
     <ul class="right">
         <li class="red accent-3 waves-effect waves-light corner-btn">
