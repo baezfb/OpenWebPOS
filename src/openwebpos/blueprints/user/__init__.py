@@ -33,7 +33,7 @@ def login_post():
     """
     form = StaffLoginForm()
     if form.validate_on_submit():
-        usr = User.query.filter_by(pin_id=form.pin.data).first()
+        usr = User.query.filter_by(pin=form.pin.data).first()
 
         if usr and usr.is_active:
             login_user(usr)
