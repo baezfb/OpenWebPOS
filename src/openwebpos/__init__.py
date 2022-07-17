@@ -15,11 +15,16 @@ def open_web_pos(instance_dir=None):
     if instance_dir is None:
         instance_dir = os.path.join(os.getcwd(), 'instance')
 
+    if os.path.isdir(instance_dir):
+        if not os.listdir(instance_dir):
+            create_file(file_path=os.getcwd(), file_name='instance/__init__.py')
+            create_file(file_path=os.getcwd(),
+                        file_name='instance/settings.py',
+                        file_mode='w',
+                        file_content="DB_DIALECT = 'sqlite'\n")
+
     create_folder(folder_path=os.getcwd(), folder_name='instance')
     create_folder(folder_path=os.getcwd(), folder_name='uploads')
-    create_file(file_path=os.getcwd(), file_name='instance/__init__.py')
-    create_file(file_path=os.getcwd(), file_name='instance/settings.py', file_mode="w",
-                file_content="DB_DIALECT='sqlite'")
 
     app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, instance_relative_config=True,
                 instance_path=instance_dir)
