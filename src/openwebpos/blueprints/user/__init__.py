@@ -19,8 +19,6 @@ def login():
     """
     Login page.
     """
-    if User.query.first() is None:
-        return redirect(url_for('core.setup'))
     # redirect to the index page if the user is already logged in
     if current_user.is_authenticated:
         return redirect(url_for('pos.index'))
