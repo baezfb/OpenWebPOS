@@ -33,17 +33,18 @@ def login_post():
     """
     form = StaffLoginForm()
     if form.validate_on_submit():
-        usr = User.query.filter_by(pin=form.pin.data).first()
+        usr = User.query.filter_by(pin=form.pin.data, active=True).first()
 
-        if usr and usr.is_active:
-            login_user(usr)
-            flash('You are logged in.', 'success')
-            next_page = request.args.get('next')
-            if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('pos.index')
-                return redirect(next_page)
-            return redirect(next_page)
-    return redirect(url_for('user.login'))
+        if usr is None:
+            flash('Invalid PIN')
+            return redirect(url_for('user.login'))
+
+        login_user(usr)
+        usr.update_activity_tracking(request.remote_addr)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('pos.index')
+        return redirect(next_page)
 
 
 @user.get('/logout')
