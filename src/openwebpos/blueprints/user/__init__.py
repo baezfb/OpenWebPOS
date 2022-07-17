@@ -23,7 +23,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('pos.index'))
     form = StaffLoginForm()
-    return render_template('user/login.html', form=form)
+    return render_template('user/login.html', form=form, title='Login')
 
 
 @user.post('/login')

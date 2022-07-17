@@ -45,7 +45,10 @@ def categories():
     """
     category_form = CategoryForm()
     categories_list = Category.query.all()
-    return render_template('admin/categories.html', categories_list=categories_list, category_form=category_form)
+    return render_template('admin/categories.html',
+                           categories_list=categories_list,
+                           category_form=category_form,
+                           title='Admin - Categories')
 
 
 @bp.post('/add_category')
@@ -96,8 +99,8 @@ def items():
     item_form.categories.choices = categories_list
     options_list = Option.query.filter_by(active=True).all()
     addons_list = Addon.query.filter_by(active=True).all()
-    return render_template('admin/items.html', items_list=items_list, item_form=item_form,
-                           options_list=options_list, addons_list=addons_list)
+    return render_template('admin/items.html', items_list=items_list, item_form=item_form, options_list=options_list,
+                           addons_list=addons_list, title='Admin - Items')
 
 
 @bp.post('/add_item')
@@ -115,8 +118,8 @@ def add_item():
             file_ext = get_file_extension(file.filename)
             filename = slugify(item_form.name.data) + '.' + file_ext
             file.save(os.path.join(os.getcwd(), 'uploads/', filename))
-            item = Item(name=item_form.name.data, description=item_form.description.data,
-                        image=filename, price=item_form.price.data, category_id=item_form.categories.data)
+            item = Item(name=item_form.name.data, description=item_form.description.data, image=filename,
+                        price=item_form.price.data, category_id=item_form.categories.data)
             item.save()
             flash('Item added successfully.', 'success')
         return redirect(url_for('admin.items'))

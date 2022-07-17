@@ -20,11 +20,11 @@ def before_request():
 @bp.get('/')
 def index():
     categories = Category.query.filter_by(active=True).all()
-    return render_template('pos/index.html', categories=categories)
+    return render_template('pos/index.html', categories=categories, title='POS')
 
 
 @bp.get('/<category_items>')
 def category(category_items):
     category_id = Category.query.filter_by(slug=category_items, active=True).first_or_404().id
     items = Item.query.filter_by(category_id=category_id, active=True).all()
-    return render_template('pos/category.html', items=items)
+    return render_template('pos/category.html', items=items, title='Category: {}'.format(category_items))
